@@ -8,12 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name= "form", urlPatterns = "/form")
-public class form extends HttpServlet {
+@WebServlet(name = "employee-form", urlPatterns = "/employee-form")
+public class AddUpdateEmployee extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("action", "save");
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("form.jsp");
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("action", "Save");
+        RequestDispatcher requestDispatcher= req.getRequestDispatcher("employee/employee-form.jsp");
         requestDispatcher.forward(req, resp);
     }
 }
