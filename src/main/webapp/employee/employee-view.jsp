@@ -1,4 +1,5 @@
 <%@ include file="/templates/header.jsp"%>
+
 <h2 class="text-center mt-4 mx-auto">View Employees</h2>
 <div class="container w-50 my-4">
     <div class="btn-wrap d-flex flex-row-reverse">
@@ -28,5 +29,6 @@
         </tbody>
     </table>
 </div>
+
 <%@ include file="/templates/footer.jsp"%>
 
