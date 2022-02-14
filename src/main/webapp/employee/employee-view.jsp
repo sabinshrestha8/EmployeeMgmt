@@ -2,8 +2,8 @@
 <h2 class="text-center mt-4 mx-auto">View Employees</h2>
 <div class="container w-50 my-4">
     <div class="btn-wrap d-flex flex-row-reverse">
-        <a href="" class="btn btn-secondary btn-sm mx-2">View Books</a>
-        <a href="" class="btn btn-primary btn-sm">View Customer</a>
+        <a href="" class="btn btn-secondary btn-sm mx-2">View Attendance</a>
+        <a href="" class="btn btn-primary btn-sm">Add Employee</a>
     </div>
     <table class="table">
         <thead>
