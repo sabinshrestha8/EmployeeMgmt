@@ -1,4 +1,4 @@
-package com.iims.controller;
+package com.iims.controller.employee;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

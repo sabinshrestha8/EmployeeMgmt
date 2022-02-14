@@ -1,4 +1,4 @@
-package com.iims.controller;
+package com.iims.controller.employee;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,13 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "department-form", urlPatterns = "/department-form")
-public class AddUpdateDepartment extends HttpServlet {
+@WebServlet(name = "employee-view", urlPatterns = "/employee-view")
+public class GetEmployees extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("action", "Save");
-        RequestDispatcher requestDispatcher= req.getRequestDispatcher("department/department-form.jsp");
+        req.setAttribute("employees", "Employee");
+        RequestDispatcher requestDispatcher= req.getRequestDispatcher("employee/employee-view.jsp");
         requestDispatcher.forward(req, resp);
     }
 
