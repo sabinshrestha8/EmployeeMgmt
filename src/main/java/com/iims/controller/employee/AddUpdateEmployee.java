@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -17,12 +18,16 @@ import java.sql.SQLException;
 public class AddUpdateEmployee extends HttpServlet {
     EmployeeDao employeeDao = new EmployeeDaoImp();
 
+
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session= req.getSession();
         String id = req.getParameter("id");
+
         if (id != null) {
             try {
-                req.setAttribute("employee", employeeDao.findOne(Integer.parseInt(id)));
+                Employee employee = employeeDao.findOne(Integer.parseInt(id));
+                session.setAttribute("employee", employee);
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
@@ -30,6 +35,7 @@ public class AddUpdateEmployee extends HttpServlet {
             }
             req.setAttribute("action", "Update");
         } else {
+            session.removeAttribute("employee");
             req.setAttribute("action", "Save");
         }
         RequestDispatcher requestDispatcher= req.getRequestDispatcher("employee/employee-form.jsp");
@@ -38,6 +44,7 @@ public class AddUpdateEmployee extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         String id = req.getParameter("id");
         int result =0;
         String name = req.getParameter("name");
@@ -47,9 +54,10 @@ public class AddUpdateEmployee extends HttpServlet {
         int departmentId = Integer.parseInt(req.getParameter("departmentId"));
         Employee employee = new Employee(name, contact, address, age, departmentId);
         try{
-            if (id.length() > 0 ) {
+            if (id != null) {
                 employee.setId(Integer.parseInt(id));
                 result = employeeDao.update(employee);
+                session.removeAttribute("employee");
             } else {
                 result = employeeDao.save(employee);
             }
