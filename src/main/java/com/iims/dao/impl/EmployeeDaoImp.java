@@ -26,9 +26,9 @@ public class EmployeeDaoImp implements EmployeeDao {
         connection = ConnectionFactory.getConnection();
         preparedStatement = connection.prepareStatement(QUERY);
 
-        preparedStatement.setString(1, employee.getName());
+        preparedStatement.setString(1, employee.getName().trim());
         preparedStatement.setLong(2, employee.getContact());
-        preparedStatement.setString(3, employee.getAddress());
+        preparedStatement.setString(3, employee.getAddress().trim());
         preparedStatement.setInt(4, employee.getAge());
         preparedStatement.setInt(5, employee.getDepartmentId());
 
@@ -51,6 +51,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             employee.setContact(resultSet.getLong("contact"));
             employee.setAddress(resultSet.getString("address"));
             employee.setAge(resultSet.getInt("age"));
+            employee.setJoinDate(resultSet.getString("joinDate").split("\\s")[0]);
             employee.setDepartmentId(resultSet.getInt("departmentId"));
 
             books.add(employee);
@@ -91,9 +92,9 @@ public class EmployeeDaoImp implements EmployeeDao {
         connection = ConnectionFactory.getConnection();
         preparedStatement = connection.prepareStatement(QUERY);
 
-        preparedStatement.setString(1, employee.getName());
+        preparedStatement.setString(1, employee.getName().trim());
         preparedStatement.setLong(2, employee.getContact());
-        preparedStatement.setString(3, employee.getAddress());
+        preparedStatement.setString(3, employee.getAddress().trim());
         preparedStatement.setInt(4, employee.getAge());
         preparedStatement.setInt(5, employee.getDepartmentId());
         preparedStatement.setInt(6, employee.getId());

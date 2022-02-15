@@ -1,10 +1,11 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/templates/header.jsp"%>
 
 <h2 class="text-center mt-4 mx-auto">View Employees</h2>
-<div class="container w-50 my-4">
+<div class="container w-75 my-4">
     <div class="btn-wrap d-flex flex-row-reverse">
-        <a href="" class="btn btn-secondary btn-sm mx-2">View Attendance</a>
-        <a href="" class="btn btn-primary btn-sm">Add Employee</a>
+        <a href="attendance-view" class="btn btn-secondary btn-sm mx-2">View Attendance</a>
+        <a href="employee-form" class="btn btn-primary btn-sm">Add Employee</a>
     </div>
     <table class="table">
         <thead>
@@ -15,17 +16,24 @@
             <th class="text-center">Age</th>
             <th class="text-center">Join Date</th>
             <th class="text-center">Department Id</th>
+            <th class="text-center">Action</th>
         </tr>
         </thead>
         <tbody>
+            <c:forEach items="${employees}" var="employee">
             <tr>
-                <td class="text-center">Sabin Shrestha</td>
-                <td class="text-center">9852354751</td>
-                <td class="text-center">Bode</td>
-                <td class="text-center">21</td>
-                <td class="text-center">24/02/2020</td>
-                <td class="text-center">05</td>
+                <td class="text-center">${employee.name}</td>
+                <td class="text-center">${employee.contact}</td>
+                <td class="text-center">${employee.address}</td>
+                <td class="text-center">${employee.age}</td>
+                <td class="text-center">${employee.joinDate}</td>
+                <td class="text-center">${employee.departmentId}</td>
+                <td align="center">
+                    <a href="" class="btn btn-success btn-sm">Edit</a>
+                    <a href="" class="btn btn-danger btn-sm">Delete</a>
+                </td>
             </tr>
+            </c:forEach>
         </tbody>
     </table>
 </div>
