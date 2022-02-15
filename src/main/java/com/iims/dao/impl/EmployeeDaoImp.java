@@ -21,7 +21,7 @@ public class EmployeeDaoImp implements EmployeeDao {
 
     @Override
     public int save(Employee employee) throws ClassNotFoundException, SQLException {
-        final String QUERY = "INSERT INTO employee (name, contact, address, age, deptId) VALUES (?,?,?,?,?)";
+        final String QUERY = "INSERT INTO employee (name, contact, address, age, departmentId) VALUES (?,?,?,?,?)";
 
         connection = ConnectionFactory.getConnection();
         preparedStatement = connection.prepareStatement(QUERY);
@@ -51,7 +51,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             employee.setContact(resultSet.getLong("contact"));
             employee.setAddress(resultSet.getString("address"));
             employee.setAge(resultSet.getInt("age"));
-            employee.setDepartmentId(resultSet.getInt("deptId"));
+            employee.setDepartmentId(resultSet.getInt("departmentId"));
 
             books.add(employee);
         }
@@ -78,7 +78,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             employee.setContact(resultSet.getLong("contact"));
             employee.setAddress(resultSet.getString("address"));
             employee.setAge(resultSet.getInt("age"));
-            employee.setDepartmentId(resultSet.getInt("deptId"));
+            employee.setDepartmentId(resultSet.getInt("departmentId"));
         }
 
         return employee;
@@ -86,7 +86,7 @@ public class EmployeeDaoImp implements EmployeeDao {
 
     @Override
     public int update(Employee employee) throws ClassNotFoundException, SQLException {
-        final String QUERY = "UPDATE employee SET name = ?, contact = ?, address = ?, age = ?, deptId = ? WHERE id = ?";
+        final String QUERY = "UPDATE employee SET name = ?, contact = ?, address = ?, age = ?, departmentId = ? WHERE id = ?";
 
         connection = ConnectionFactory.getConnection();
         preparedStatement = connection.prepareStatement(QUERY);
