@@ -10,6 +10,7 @@
     <table class="table">
         <thead>
         <tr>
+            <th class="text-center">Id</th>
             <th class="text-center">Name</th>
             <th class="text-center">Contact</th>
             <th class="text-center">Address</th>
@@ -22,6 +23,7 @@
         <tbody>
             <c:forEach items="${employees}" var="employee">
             <tr>
+                <td class="text-center">${employee.id}</td>
                 <td class="text-center">${employee.name}</td>
                 <td class="text-center">${employee.contact}</td>
                 <td class="text-center">${employee.address}</td>
@@ -29,8 +31,9 @@
                 <td class="text-center">${employee.joinDate}</td>
                 <td class="text-center">${employee.departmentId}</td>
                 <td align="center">
-                    <a href="" class="btn btn-success btn-sm">Edit</a>
-                    <a href="" class="btn btn-danger btn-sm">Delete</a>
+                    <a class="btn btn-success btn-sm"
+                       href="${pageContext.request.contextPath}/employee-form?id=${employee.id}">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/employee-view?id=${employee.id}">Delete</a>
                 </td>
             </tr>
             </c:forEach>
