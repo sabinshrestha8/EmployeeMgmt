@@ -98,4 +98,12 @@ public class Employee {
         this.joinDate = joinDate;
         this.departmentId = departmentId;
     }
+
+    public Employee(String name, long contact, String address, int age, int departmentId) {
+        this.name = name;
+        this.contact = contact;
+        this.address = address;
+        this.age = age;
+        this.departmentId = departmentId;
+    }
 }

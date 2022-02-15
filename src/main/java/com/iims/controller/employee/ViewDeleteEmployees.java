@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "employee-view", urlPatterns = "/employee-view")
-public class GetEmployees extends HttpServlet {
+public class ViewDeleteEmployees extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -2,24 +2,24 @@ package com.iims.models;
 
 public class Attendance {
 
-    private int emp_id;
-    private String name, date;
+    private int empId;
+    private String empName, date;
     private Boolean isPresent;
 
-    public int getEmp_id() {
-        return emp_id;
+    public int getEmpId() {
+        return empId;
     }
 
-    public void setEmp_id(int emp_id) {
-        this.emp_id = emp_id;
+    public void setEmpId(int empId) {
+        this.empId = empId;
     }
 
-    public String getName() {
-        return name;
+    public String getEmpName() {
+        return empName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmpName(String empName) {
+        this.empName = empName;
     }
 
     public String getDate() {
@@ -41,8 +41,8 @@ public class Attendance {
     @Override
     public String toString() {
         return "Attendance{" +
-                "emp_id=" + emp_id +
-                ", name='" + name + '\'' +
+                "empId=" + empId +
+                ", empName='" + empName + '\'' +
                 ", date='" + date + '\'' +
                 ", isPresent=" + isPresent +
                 '}';
@@ -50,15 +50,15 @@ public class Attendance {
 
     public Attendance() {}
 
-    public Attendance(String name, String date, Boolean isPresent) {
-        this.name = name;
+    public Attendance(String empName, String date, Boolean isPresent) {
+        this.empName = empName;
         this.date = date;
         this.isPresent = isPresent;
     }
 
-    public Attendance(int emp_id, String name, String date, Boolean isPresent) {
-        this.emp_id = emp_id;
-        this.name = name;
+    public Attendance(int empId, String empName, String date, Boolean isPresent) {
+        this.empId = empId;
+        this.empName = empName;
         this.date = date;
         this.isPresent = isPresent;
     }
