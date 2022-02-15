@@ -54,7 +54,7 @@ public class AddUpdateEmployee extends HttpServlet {
         int departmentId = Integer.parseInt(req.getParameter("departmentId"));
         Employee employee = new Employee(name, contact, address, age, departmentId);
         try{
-            if (id != null) {
+            if (id.length() > 0) {
                 employee.setId(Integer.parseInt(id));
                 result = employeeDao.update(employee);
                 session.removeAttribute("employee");
