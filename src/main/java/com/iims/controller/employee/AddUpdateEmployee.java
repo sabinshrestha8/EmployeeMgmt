@@ -28,9 +28,7 @@ public class AddUpdateEmployee extends HttpServlet {
             try {
                 Employee employee = employeeDao.findOne(Integer.parseInt(id));
                 session.setAttribute("employee", employee);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
             req.setAttribute("action", "Update");
@@ -43,10 +41,10 @@ public class AddUpdateEmployee extends HttpServlet {
     }
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
         String id = req.getParameter("id");
-        int result =0;
+        int result;
         String name = req.getParameter("name");
         long contact = Long.parseLong(req.getParameter("contact"));
         String address = req.getParameter("address");
