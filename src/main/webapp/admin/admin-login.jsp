@@ -1,16 +1,20 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: swors
-  Date: 2/15/2022
-  Time: 11:48 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ include file="/templates/header.jsp"%>
 
-</body>
-</html>
+<div class="container w-50 mr-0">
+    <h2 class="text-center mt-4">LOGIN IN</h2>
+    <form action ="employee-form" method="post">
+        <input type="hidden" value="${employee.id}" name="id">
+        <div class="mb-3">
+            <label class="form-label">Username:</label>
+            <input type="text" class="form-control" value="${admin.name}" placeholder="admin" name="name">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password:</label>
+            <input type="password" class="form-control" value="${admin.password}" placeholder="admin123" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>
+
+<%@ include file="/templates/footer.jsp"%>
+
