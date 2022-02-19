@@ -20,21 +20,25 @@ public class ViewDeleteEmployees extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        String id = req.getParameter("id");
-        try {
-            if (id != null) {
-                int result = employeeDao.remove(Integer.parseInt(id));
-                if (result == 1) {
-                    session.setAttribute("employee", employeeDao.findAll());
-                    resp.sendRedirect("employee-view");
+        if(session.getAttribute("user")!= null) {
+            String id = req.getParameter("id");
+            try {
+                if (id != null) {
+                    int result = employeeDao.remove(Integer.parseInt(id));
+                    if (result == 1) {
+                        session.setAttribute("employee", employeeDao.findAll());
+                        resp.sendRedirect("employee-view");
+                    }
+                } else {
+                    session.setAttribute("employees", employeeDao.findAll());
+                    RequestDispatcher requestDispatcher = req.getRequestDispatcher("employee/employee-view.jsp");
+                    requestDispatcher.forward(req, resp);
                 }
-            } else {
-                session.setAttribute("employees", employeeDao.findAll());
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("employee/employee-view.jsp");
-                requestDispatcher.forward(req, resp);
+            } catch (SQLException | ClassNotFoundException ex) {
+                System.out.println(ex.getMessage());
             }
-        } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println(ex.getMessage());
+        } else{
+            resp.sendRedirect("admin");
         }
     }
 

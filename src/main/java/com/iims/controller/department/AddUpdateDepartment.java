@@ -17,5 +17,4 @@ public class AddUpdateDepartment extends HttpServlet {
         RequestDispatcher requestDispatcher= req.getRequestDispatcher("department/department-form.jsp");
         requestDispatcher.forward(req, resp);
     }
-
 }
