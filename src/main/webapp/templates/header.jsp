@@ -17,4 +17,4 @@
     </style>
     <title>Employee Management System</title>
 </head>
-<body>
+<body class="bg-light">
