@@ -22,50 +22,54 @@ public class AddUpdateEmployee extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session= req.getSession();
-        String id = req.getParameter("id");
+        if(session.getAttribute("user")!=null) {
+            String id = req.getParameter("id");
 
-        if (id != null) {
-            try {
-                Employee employee = employeeDao.findOne(Integer.parseInt(id));
-                session.setAttribute("employee", employee);
-            } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
+            if (id != null) {
+                try {
+                    Employee employee = employeeDao.findOne(Integer.parseInt(id));
+                    session.setAttribute("employee", employee);
+                } catch (ClassNotFoundException | SQLException e) {
+                    e.printStackTrace();
+                }
+                req.setAttribute("action", "Update");
+            } else {
+                session.removeAttribute("employee");
+                req.setAttribute("action", "Save");
             }
-            req.setAttribute("action", "Update");
-        } else {
-            session.removeAttribute("employee");
-            req.setAttribute("action", "Save");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("employee/employee-form.jsp");
+            requestDispatcher.forward(req, resp);
+        }else{
+            resp.sendRedirect("admin");
         }
-        RequestDispatcher requestDispatcher= req.getRequestDispatcher("employee/employee-form.jsp");
-        requestDispatcher.forward(req, resp);
     }
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
-        String id = req.getParameter("id");
-        int result;
-        String name = req.getParameter("name");
-        long contact = Long.parseLong(req.getParameter("contact"));
-        String address = req.getParameter("address");
-        int age = Integer.parseInt(req.getParameter("age"));
-        int departmentId = Integer.parseInt(req.getParameter("departmentId"));
-        Employee employee = new Employee(name, contact, address, age, departmentId);
-        try{
-            if (id.length() > 0) {
-                employee.setId(Integer.parseInt(id));
-                result = employeeDao.update(employee);
-                session.removeAttribute("employee");
-            } else {
-                result = employeeDao.save(employee);
+
+            String id = req.getParameter("id");
+            int result;
+            String name = req.getParameter("name");
+            long contact = Long.parseLong(req.getParameter("contact"));
+            String address = req.getParameter("address");
+            int age = Integer.parseInt(req.getParameter("age"));
+            int departmentId = Integer.parseInt(req.getParameter("departmentId"));
+            Employee employee = new Employee(name, contact, address, age, departmentId);
+            try {
+                if (id.length() > 0) {
+                    employee.setId(Integer.parseInt(id));
+                    result = employeeDao.update(employee);
+                    session.removeAttribute("employee");
+                } else {
+                    result = employeeDao.save(employee);
+                }
+                if (result > 0) {
+                    resp.sendRedirect("employee-view");
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
             }
-            if (result > 0) {
-                resp.sendRedirect("employee-view");
-            }
-        }
-         catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
     }
 }

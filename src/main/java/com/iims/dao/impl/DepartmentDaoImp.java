@@ -49,49 +49,25 @@ public class DepartmentDaoImp implements DepartmentDao {
         return departments;
     }
 
-    @Override
-    public Department findOne(int id) throws ClassNotFoundException, SQLException {
-        final String QUERY = "SELECT * FROM department WHERE id = ?";
+//    @Override
+//    public Department findOne(int id) throws ClassNotFoundException, SQLException {
+//        final String QUERY = "SELECT * FROM department WHERE id = ?";
+//
+//        connection = ConnectionFactory.getConnection();
+//        preparedStatement = connection.prepareStatement(QUERY);
+//
+//        preparedStatement.setInt(1, id);
+//
+//        resultSet = preparedStatement.executeQuery();
+//
+//        Department department = new Department();
+//
+//        while (resultSet.next()) {
+//            department.setId(resultSet.getInt("id"));
+//            department.setName(resultSet.getString("name"));
+//        }
+//
+//        return department;
+//    }
 
-        connection = ConnectionFactory.getConnection();
-        preparedStatement = connection.prepareStatement(QUERY);
-
-        preparedStatement.setInt(1, id);
-
-        resultSet = preparedStatement.executeQuery();
-
-        Department department = new Department();
-
-        while (resultSet.next()) {
-            department.setId(resultSet.getInt("id"));
-            department.setName(resultSet.getString("name"));
-        }
-
-        return department;
-    }
-
-    @Override
-    public int update(Department department) throws ClassNotFoundException, SQLException {
-        final String QUERY = "UPDATE department SET name = ? WHERE id = ?";
-
-        connection = ConnectionFactory.getConnection();
-        preparedStatement = connection.prepareStatement(QUERY);
-
-        preparedStatement.setString(1, department.getName().trim());
-
-        return preparedStatement.executeUpdate();
-
-    }
-
-    @Override
-    public int remove(int id) throws ClassNotFoundException, SQLException {
-        final String QUERY = "DELETE FROM department WHERE id = ?";
-
-        connection = ConnectionFactory.getConnection();
-        preparedStatement = connection.prepareStatement(QUERY);
-
-        preparedStatement.setInt(1, id);
-
-        return preparedStatement.executeUpdate();
-    }
 }
