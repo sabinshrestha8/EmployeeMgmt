@@ -21,7 +21,6 @@ public class AddAdmin extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         if(session.getAttribute("user") == null) {
-            req.setAttribute("action", "Save");
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("admin/admin-login.jsp");
             requestDispatcher.forward(req, resp);
         }else{
@@ -35,6 +34,8 @@ public class AddAdmin extends HttpServlet {
         String email = req.getParameter("email");
         String password= req.getParameter("password");
 
+    session.setAttribute("email", email);
+
         if(email.length()>0 && password.length()>0){
             AdminDao adminDao = new AdminDaoImpl();
             try {
@@ -42,14 +43,19 @@ public class AddAdmin extends HttpServlet {
                 if(admin !=null){
                     System.out.println("found");
                     session.setAttribute("user", admin);
-                    resp.sendRedirect("./");
+                    session.removeAttribute("email");
+                    resp.sendRedirect("employee-view");
                 }
                 else {
+                    session.setAttribute("error", "Invalid Email or password!");
                     resp.sendRedirect("admin");
                 }
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }else{
+            session.setAttribute("error", "PLease enter username or password");
+            resp.sendRedirect("admin");
         }
 
     }
