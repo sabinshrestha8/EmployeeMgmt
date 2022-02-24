@@ -41,6 +41,7 @@ public class DepartmentDaoImp implements DepartmentDao {
         while (resultSet.next()) {
             Department department = new Department();
 
+            department.setId(resultSet.getInt("id"));
             department.setName(resultSet.getString("name"));
 
             departments.add(department);

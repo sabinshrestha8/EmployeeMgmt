@@ -11,7 +11,6 @@
         <tr>
             <th class="text-center">Id</th>
             <th class="text-center">Name</th>
-            <th class="text-center">Action</th>
         </tr>
         </thead>
         <tbody>
