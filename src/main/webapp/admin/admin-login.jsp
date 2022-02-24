@@ -9,12 +9,13 @@
         <input type="hidden" value="${employee.id}" name="id">
         <div class="mb-3">
             <label class="form-label">Email: </label>
-            <input type="email" class="form-control" value="${admin.name}" placeholder="admin" name="email">
+            <input type="email" class="form-control" value="${email}" placeholder="admin" name="email">
         </div>
         <div class="mb-3">
             <label class="form-label">Password:</label>
-            <input type="password" class="form-control" value="${admin.password}" placeholder="admin123" name="password">
+            <input type="password" class="form-control" placeholder="admin123" name="password">
         </div>
+        <p class="text-danger">${error!=null ? error : ""}</p>
         <div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-primary">Let me in!</button>
         </div>
