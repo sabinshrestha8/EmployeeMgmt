@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,3 +19,9 @@
     <title>Employee Management System</title>
 </head>
 <body class="bg-light">
+
+<c:if test="${user != null}">
+<div class="d-flex flex-row-reverse p-4">
+    <a href="logout" class="btn btn-danger">Logout</a>
+</div>
+</c:if>
