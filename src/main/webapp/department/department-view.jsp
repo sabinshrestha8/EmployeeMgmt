@@ -17,12 +17,8 @@
         <tbody>
             <c:forEach items="${departments}" var="department" >
                 <tr>
-                    <td class="text-center">01</td>
-                    <td class="text-center">flutter</td>
-                    <td align="center" style="width: 40%">
-                        <a class="btn btn-success btn-sm" href="">Edit</a>
-                        <a class="btn btn-danger btn-sm" href="">Delete</a>
-                    </td>
+                    <td class="text-center">${department.id}</td>
+                    <td class="text-center">${department.name}</td>
                 </tr>
             </c:forEach>
         </tbody>

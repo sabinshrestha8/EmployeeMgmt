@@ -8,7 +8,6 @@
             <label class="form-label">Name:</label>
             <input type="text" class="form-control" value="${Department.name}" placeholder="AI" name="name">
         </div>
-        <button type="submit" class="btn btn-primary">${action}</button>
     </form>
 </div>
 
