@@ -30,11 +30,11 @@ public class Attendance {
         this.date = date;
     }
 
-    public Boolean getPresent() {
+    public Boolean getIsPresent() {
         return isPresent;
     }
 
-    public void setPresent(Boolean present) {
+    public void setIsPresent(Boolean present) {
         isPresent = present;
     }
 

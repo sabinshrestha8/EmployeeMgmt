@@ -13,5 +13,7 @@ public interface AttendanceDao {
     int saveAbsent(Employee employee) throws SQLException, ClassNotFoundException;
 
     List<Attendance> findAll() throws SQLException, ClassNotFoundException;
+
+    List<Attendance> findAllByEmpId(int id) throws SQLException, ClassNotFoundException;
 }
 
