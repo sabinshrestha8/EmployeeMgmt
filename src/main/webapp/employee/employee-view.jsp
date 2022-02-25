@@ -40,10 +40,10 @@
                     </a>
                 </td>
                 <td align="center">
-                    <a class="btn btn-success btn-sm" style="width: 35px"
-                       href="#"><i class="fas fa-check"></i></a>
-                    <a class="btn btn-danger btn-sm" style="width: 35px"
-                       href="#"><i class="fas fa-times"></i></a>
+                    <button class="btn btn-success btn-sm present ${employee.id}" style="width: 35px"
+                    ><i class="fas fa-check"></i></button>
+                    <button class="btn btn-danger btn-sm absent ${employee.id}" style="width: 35px"
+                    ><i class="fas fa-times"></i></button>
                     <a class="btn btn-dark btn-sm" style="width: 35px"
                        href="attendance-view"><i class="fas fa-eye"></i></a>
                 </td>
@@ -52,6 +52,10 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    <%@ include file="/assets/script.js" %>
+</script>
 
 <%@ include file="/templates/footer.jsp" %>
 
