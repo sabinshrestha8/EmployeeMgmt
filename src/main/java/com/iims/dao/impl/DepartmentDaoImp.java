@@ -50,25 +50,4 @@ public class DepartmentDaoImp implements DepartmentDao {
         return departments;
     }
 
-//    @Override
-//    public Department findOne(int id) throws ClassNotFoundException, SQLException {
-//        final String QUERY = "SELECT * FROM department WHERE id = ?";
-//
-//        connection = ConnectionFactory.getConnection();
-//        preparedStatement = connection.prepareStatement(QUERY);
-//
-//        preparedStatement.setInt(1, id);
-//
-//        resultSet = preparedStatement.executeQuery();
-//
-//        Department department = new Department();
-//
-//        while (resultSet.next()) {
-//            department.setId(resultSet.getInt("id"));
-//            department.setName(resultSet.getString("name"));
-//        }
-//
-//        return department;
-//    }
-
 }
