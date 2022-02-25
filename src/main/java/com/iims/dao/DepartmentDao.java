@@ -9,7 +9,5 @@ public interface DepartmentDao {
 
     int save(Department department) throws SQLException, ClassNotFoundException;
 
-  //  Department findOne(int id) throws SQLException, ClassNotFoundException;
-
     List<Department> findAll() throws SQLException, ClassNotFoundException;
 }

@@ -12,17 +12,16 @@
         <tr>
             <th class="text-center">Employee Id</th>
             <th class="text-center">Employee Name</th>
-            <th class="text-center">Date</th>
             <th class="text-center">IsPresent</th>
-            <th class="text-center">Action</th>
+            <th class="text-center">Date</th>
         </tr>
         </thead>
         <tbody>
             <tr>
                 <td class="text-center">01</td>
                 <td class="text-center">Swornima Shrestha</td>
-                <td class="text-center">25/02/2021</td>
                 <td class="text-center">1</td>
+                <td class="text-center">25/02/2021</td>
                 <td align="center">
                     <a href="" class="btn btn-success btn-sm">Edit</a>
                     <a href="" class="btn btn-danger btn-sm">Delete</a>

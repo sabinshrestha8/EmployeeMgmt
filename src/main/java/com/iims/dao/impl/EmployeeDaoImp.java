@@ -49,7 +49,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             employee.setId(resultSet.getInt("id"));
             employee.setName(resultSet.getString("name"));
             employee.setContact(resultSet.getLong("contact"));
-            employee.setAddress(resultSet.getString("address"));
+            employee.setAddress(resultSet.getString("address").split(",")[0]);
             employee.setAge(resultSet.getInt("age"));
             employee.setJoinDate(resultSet.getString("joinDate").split("\\s")[0]);
             employee.setDepartmentId(resultSet.getInt("departmentId"));
