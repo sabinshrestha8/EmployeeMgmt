@@ -4,22 +4,17 @@ import com.iims.dao.AttendanceDao;
 import com.iims.dao.EmployeeDao;
 import com.iims.dao.impl.AttendanceDaoImpl;
 import com.iims.dao.impl.EmployeeDaoImp;
-import com.iims.models.Attendance;
 import com.iims.models.Employee;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet(name = "attendance", urlPatterns = "/attendance")
 public class SaveAttendance extends HttpServlet {
@@ -42,14 +37,14 @@ public class SaveAttendance extends HttpServlet {
             } else {
                 stringBuilder.append("");
             }
-        } catch (IOException ex) {
-            throw ex;
+        } catch (IOException e) {
+            throw e;
         } finally {
             if (bufferedReader != null) {
                 try {
                     bufferedReader.close();
-                } catch (IOException ex) {
-                    throw ex;
+                } catch (IOException e) {
+                    throw e;
                 }
             }
         }
@@ -59,7 +54,7 @@ public class SaveAttendance extends HttpServlet {
     }
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String id = req.getParameter("id");
         String isPresent = req.getParameter("isPresent");
         EmployeeDao employeeDao = new EmployeeDaoImp();

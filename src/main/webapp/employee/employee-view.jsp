@@ -45,7 +45,7 @@
                     <button class="btn btn-danger btn-sm absent ${employee.id}" style="width: 35px"
                     ><i class="fas fa-times"></i></button>
                     <a class="btn btn-dark btn-sm" style="width: 35px"
-                       href="attendance-view"><i class="fas fa-eye"></i></a>
+                       href="attendance-view?id=${employee.id}"><i class="fas fa-eye"></i></a>
                 </td>
             </tr>
         </c:forEach>

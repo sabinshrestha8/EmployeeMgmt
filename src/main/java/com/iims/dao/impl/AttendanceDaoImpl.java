@@ -3,7 +3,6 @@ package com.iims.dao.impl;
 import com.iims.connection.ConnectionFactory;
 import com.iims.dao.AttendanceDao;
 import com.iims.models.Attendance;
-import com.iims.models.Department;
 import com.iims.models.Employee;
 
 import java.sql.Connection;
@@ -59,9 +58,36 @@ public class AttendanceDaoImpl implements AttendanceDao {
             Attendance attendance = new Attendance();
 
             attendance.setEmpId(Integer.parseInt(resultSet.getString("empId")));
-            attendance.setEmpName(resultSet.getString("name"));
+            attendance.setEmpName(resultSet.getString("empName"));
             attendance.setDate(resultSet.getString("date"));
-            attendance.setPresent(resultSet.getBoolean("isPresent"));
+            attendance.setIsPresent(resultSet.getBoolean("isPresent"));
+
+            attendances.add(attendance);
+        }
+
+        return attendances;
+    }
+
+    @Override
+    public List<Attendance> findAllByEmpId(int id) throws SQLException, ClassNotFoundException {
+        final List<Attendance> attendances = new ArrayList<>();
+        final String QUERY = "SELECT * FROM attendance WHERE empId = ?";
+
+        connection = ConnectionFactory.getConnection();
+        connection = ConnectionFactory.getConnection();
+        preparedStatement = connection.prepareStatement(QUERY);
+
+        preparedStatement.setInt(1, id);
+
+        resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            Attendance attendance = new Attendance();
+
+            attendance.setEmpId(Integer.parseInt(resultSet.getString("empId")));
+            attendance.setEmpName(resultSet.getString("empName"));
+            attendance.setDate(resultSet.getString("date").split("\\s")[0]);
+            attendance.setIsPresent(resultSet.getBoolean("isPresent"));
 
             attendances.add(attendance);
         }

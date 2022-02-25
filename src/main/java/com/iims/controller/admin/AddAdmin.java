@@ -29,7 +29,7 @@ public class AddAdmin extends HttpServlet {
     }
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
         String email = req.getParameter("email");
         String password= req.getParameter("password");
@@ -41,7 +41,6 @@ public class AddAdmin extends HttpServlet {
             try {
                 Admin admin = adminDao.findOne(email, password);
                 if(admin !=null){
-                    System.out.println("found");
                     session.setAttribute("user", admin);
                     session.removeAttribute("email");
                     resp.sendRedirect("employee-view");
