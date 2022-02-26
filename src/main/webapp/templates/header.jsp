@@ -1,5 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
+    response.setHeader("Pragma", "no-cache");   //HTTP 1.0
+    response.setHeader("Expires", "0"); //Proxies
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +18,8 @@
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-        body{
+
+        body {
             font-family: Poppins, sans-serif;
         }
     </style>
@@ -21,9 +27,10 @@
 </head>
 <body class="bg-light">
 
-<c:if test="${user != null}">
-    <div class="d-flex flex-row-reverse p-4">
-        <a href="logout" class="btn btn-danger">Logout</a>
-    </div>
-</c:if>
-
+<div class="container">
+    <c:if test="${user != null}">
+        <div class="d-flex flex-row-reverse p-4">
+            <a href="logout" class="btn btn-danger">Logout</a>
+        </div>
+    </c:if>
+</div>

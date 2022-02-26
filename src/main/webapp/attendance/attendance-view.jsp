@@ -1,10 +1,4 @@
-<%@ include file="/templates/header.jsp"%>
-
-<%
-    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
-    response.setHeader("Pragma", "no-cache");   //HTTP 1.0
-    response.setHeader("Expires", "0"); //Proxies
-%>
+<%@ include file="/templates/header.jsp" %>
 
 <h2 class="text-center mt-4 mx-auto">View Attendance</h2>
 <div class="container w-75 my-4">
@@ -23,22 +17,22 @@
         </thead>
         <tbody>
         <c:set var="total" value="0" scope="page"/>
-            <c:forEach var="attendance" items="${attendances}" varStatus="loop">
-                <c:if test="${attendance.isPresent}">
-                    <c:set var="total" value="${total+1}" scope="page"/>
-                </c:if>
-                <tr>
-                    <td class="text-center">${attendance.empId}</td>
-                    <td class="text-center">${attendance.empName}</td>
-                    <td class="text-center">${attendance.isPresent?"Present":"Absent"}</td>
-                    <td class="text-center">${attendance.date}</td>
-                </tr>
-            </c:forEach>
+        <c:forEach var="attendance" items="${attendances}" varStatus="loop">
+            <c:if test="${attendance.isPresent}">
+                <c:set var="total" value="${total+1}" scope="page"/>
+            </c:if>
+            <tr>
+                <td class="text-center">${attendance.empId}</td>
+                <td class="text-center">${attendance.empName}</td>
+                <td class="text-center">${attendance.isPresent?"Present":"Absent"}</td>
+                <td class="text-center">${attendance.date}</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
     <p class="text-end me-2">Total Attendance: ${total}</p>
 </div>
 
-<%@ include file="/templates/footer.jsp"%>
+<%@ include file="/templates/footer.jsp" %>
 
 

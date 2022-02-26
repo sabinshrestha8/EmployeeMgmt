@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class AdminDaoImpl implements AdminDao {
 
     @Override
-    public Admin findOne(String email, String password) throws SQLException, ClassNotFoundException{
+    public Admin findOne(String email, String password) throws SQLException, ClassNotFoundException {
         final String QUERY = "SELECT * FROM admin WHERE email = ? AND password = ?";
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(QUERY);

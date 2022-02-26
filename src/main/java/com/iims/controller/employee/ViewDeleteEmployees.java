@@ -22,11 +22,12 @@ import java.util.Date;
 public class ViewDeleteEmployees extends HttpServlet {
     EmployeeDao employeeDao = new EmployeeDaoImp();
     AttendanceDao attendanceDao = new AttendanceDaoImpl();
+
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         HttpSession session = req.getSession();
-        if(session.getAttribute("user")!= null) {
+        if (session.getAttribute("user") != null) {
             String id = req.getParameter("id");
             try {
                 if (id != null) {
@@ -48,8 +49,8 @@ public class ViewDeleteEmployees extends HttpServlet {
             } catch (SQLException | ClassNotFoundException ex) {
                 System.out.println(ex.getMessage());
             }
-        } else{
-            resp.sendRedirect("admin");
+        } else {
+            resp.sendRedirect("login");
         }
     }
 

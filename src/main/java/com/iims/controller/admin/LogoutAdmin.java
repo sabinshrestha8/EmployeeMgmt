@@ -1,6 +1,5 @@
 package com.iims.controller.admin;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,7 @@ import java.io.IOException;
 @WebServlet(name = "logout", urlPatterns = "/logout")
 public class LogoutAdmin extends HttpServlet {
 
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         HttpSession session = req.getSession();
         session.removeAttribute("user");

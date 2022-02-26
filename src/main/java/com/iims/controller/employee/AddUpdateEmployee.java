@@ -24,32 +24,32 @@ public class AddUpdateEmployee extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session= req.getSession();
+        HttpSession session = req.getSession();
 
         DepartmentDao departmentDao = new DepartmentDaoImp();
 
         try {
-        session.setAttribute("departments", departmentDao.findAll());
+            session.setAttribute("departments", departmentDao.findAll());
 
-        if(session.getAttribute("user")!=null) {
-            String id = req.getParameter("id");
+            if (session.getAttribute("user") != null) {
+                String id = req.getParameter("id");
 
-            if (id != null) {
+                if (id != null) {
 
                     Employee employee = employeeDao.findOne(Integer.parseInt(id));
                     session.setAttribute("employee", employee);
                     session.setAttribute("empDepartment", employee.getDepartmentId());
 
-                req.setAttribute("action", "Update");
+                    req.setAttribute("action", "Update");
+                } else {
+                    session.removeAttribute("employee");
+                    req.setAttribute("action", "Save");
+                }
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("employee/employee-form.jsp");
+                requestDispatcher.forward(req, resp);
             } else {
-                session.removeAttribute("employee");
-                req.setAttribute("action", "Save");
+                resp.sendRedirect("login");
             }
-            RequestDispatcher requestDispatcher = req.getRequestDispatcher("employee/employee-form.jsp");
-            requestDispatcher.forward(req, resp);
-        }else{
-            resp.sendRedirect("admin");
-        }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -59,28 +59,28 @@ public class AddUpdateEmployee extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
 
-            String id = req.getParameter("id");
-            int result;
-            String name = req.getParameter("name");
-            long contact = Long.parseLong(req.getParameter("contact"));
-            String address = req.getParameter("address");
-            int age = Integer.parseInt(req.getParameter("age"));
-            int departmentId = Integer.parseInt(req.getParameter("departmentId"));
-            Employee employee = new Employee(name, contact, address, age, departmentId);
-            try {
-                if (id.length() > 0) {
-                    employee.setId(Integer.parseInt(id));
-                    result = employeeDao.update(employee);
-                    session.removeAttribute("employee");
-                } else {
-                    result = employeeDao.save(employee);
-                }
-                if (result > 0) {
-                    resp.sendRedirect("employee-view");
-                }
-            } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
+        String id = req.getParameter("id");
+        int result;
+        String name = req.getParameter("name");
+        long contact = Long.parseLong(req.getParameter("contact"));
+        String address = req.getParameter("address");
+        int age = Integer.parseInt(req.getParameter("age"));
+        int departmentId = Integer.parseInt(req.getParameter("departmentId"));
+        Employee employee = new Employee(name, contact, address, age, departmentId);
+        try {
+            if (id.length() > 0) {
+                employee.setId(Integer.parseInt(id));
+                result = employeeDao.update(employee);
+                session.removeAttribute("employee");
+            } else {
+                result = employeeDao.save(employee);
             }
+            if (result > 0) {
+                resp.sendRedirect("employee-view");
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 }

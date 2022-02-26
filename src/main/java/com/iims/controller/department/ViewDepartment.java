@@ -28,8 +28,8 @@ public class ViewDepartment extends HttpServlet {
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }else{
-            resp.sendRedirect("admin");
+        } else {
+            resp.sendRedirect("login");
         }
     }
 }

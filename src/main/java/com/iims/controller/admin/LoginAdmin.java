@@ -14,16 +14,16 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "admin", urlPatterns = "/admin")
+@WebServlet(name = "login", urlPatterns = "/login")
 
-public class AddAdmin extends HttpServlet {
+public class LoginAdmin extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        if(session.getAttribute("user") == null) {
+        if (session.getAttribute("user") == null) {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("admin/admin-login.jsp");
             requestDispatcher.forward(req, resp);
-        }else{
+        } else {
             resp.sendRedirect("./");
         }
     }
@@ -32,29 +32,28 @@ public class AddAdmin extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         HttpSession session = req.getSession();
         String email = req.getParameter("email");
-        String password= req.getParameter("password");
+        String password = req.getParameter("password");
 
-    session.setAttribute("email", email);
+        session.setAttribute("email", email);
 
-        if(email.length()>0 && password.length()>0){
+        if (email.length() > 0 && password.length() > 0) {
             AdminDao adminDao = new AdminDaoImpl();
             try {
                 Admin admin = adminDao.findOne(email, password);
-                if(admin !=null){
+                if (admin != null) {
                     session.setAttribute("user", admin);
                     session.removeAttribute("email");
                     resp.sendRedirect("employee-view");
-                }
-                else {
+                } else {
                     session.setAttribute("error", "Invalid Email or password!");
-                    resp.sendRedirect("admin");
+                    resp.sendRedirect("login");
                 }
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        }else{
+        } else {
             session.setAttribute("error", "PLease enter username or password");
-            resp.sendRedirect("admin");
+            resp.sendRedirect("login");
         }
 
     }

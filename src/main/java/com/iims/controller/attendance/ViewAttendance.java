@@ -29,7 +29,7 @@ public class ViewAttendance extends HttpServlet {
                 RequestDispatcher requestDispatcher = req.getRequestDispatcher("attendance/attendance-view.jsp");
                 requestDispatcher.forward(req, resp);
             } else {
-                resp.sendRedirect("admin");
+                resp.sendRedirect("login");
             }
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();

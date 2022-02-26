@@ -1,13 +1,4 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.iims.models.Attendance" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/templates/header.jsp" %>
-
-<%
-    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
-    response.setHeader("Pragma", "no-cache");   //HTTP 1.0
-    response.setHeader("Expires", "0"); //Proxies
-%>
 
 <h2 class="text-center mt-4 mx-auto">View Employees</h2>
 <div class="container w-75 my-4">
@@ -54,9 +45,11 @@
                         </c:if>
                     </c:forEach>
                     <c:if test="${attended == null}">
-                        <button class="btn btn-success btn-sm present present${employee.id} ${employee.id}" style="width: 35px"
+                        <button class="btn btn-success btn-sm present present${employee.id} ${employee.id}"
+                                style="width: 35px"
                         ><i class="fas fa-check"></i></button>
-                        <button class="btn btn-danger btn-sm absent absent${employee.id} ${employee.id}" style="width: 35px"
+                        <button class="btn btn-danger btn-sm absent absent${employee.id} ${employee.id}"
+                                style="width: 35px"
                         ><i class="fas fa-times"></i></button>
                     </c:if>
                     <c:remove var="attended"/>
