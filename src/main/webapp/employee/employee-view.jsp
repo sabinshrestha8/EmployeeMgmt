@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.iims.models.Attendance" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/templates/header.jsp" %>
 
@@ -39,11 +41,19 @@
                        href="employee-view?id=${employee.id}"><i class="fas fa-trash"></i>
                     </a>
                 </td>
-                <td align="center">
-                    <button class="btn btn-success btn-sm present ${employee.id}" style="width: 35px"
-                    ><i class="fas fa-check"></i></button>
-                    <button class="btn btn-danger btn-sm absent ${employee.id}" style="width: 35px"
-                    ><i class="fas fa-times"></i></button>
+                <td align="center" id="attendance${employee.id}">
+                    <c:forEach var="attendace" items="${attendances}">
+                        <c:if test="${attendace.empId == employee.id}">
+                            <c:set var="attended" value="true" scope="page"/>
+                        </c:if>
+                    </c:forEach>
+                    <c:if test="${attended == null}">
+                        <button class="btn btn-success btn-sm present present${employee.id} ${employee.id}" style="width: 35px"
+                        ><i class="fas fa-check"></i></button>
+                        <button class="btn btn-danger btn-sm absent absent${employee.id} ${employee.id}" style="width: 35px"
+                        ><i class="fas fa-times"></i></button>
+                    </c:if>
+                    <c:remove var="attended"/>
                     <a class="btn btn-dark btn-sm" style="width: 35px"
                        href="attendance-view?id=${employee.id}"><i class="fas fa-eye"></i></a>
                 </td>
