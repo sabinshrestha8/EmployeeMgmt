@@ -1,7 +1,10 @@
 package com.iims.controller.employee;
 
+import com.iims.dao.DepartmentDao;
 import com.iims.dao.EmployeeDao;
+import com.iims.dao.impl.DepartmentDaoImp;
 import com.iims.dao.impl.EmployeeDaoImp;
+import com.iims.models.Department;
 import com.iims.models.Employee;
 
 import javax.servlet.RequestDispatcher;
@@ -22,16 +25,21 @@ public class AddUpdateEmployee extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session= req.getSession();
+
+        DepartmentDao departmentDao = new DepartmentDaoImp();
+
+        try {
+        session.setAttribute("departments", departmentDao.findAll());
+
         if(session.getAttribute("user")!=null) {
             String id = req.getParameter("id");
 
             if (id != null) {
-                try {
+
                     Employee employee = employeeDao.findOne(Integer.parseInt(id));
                     session.setAttribute("employee", employee);
-                } catch (ClassNotFoundException | SQLException e) {
-                    e.printStackTrace();
-                }
+                    session.setAttribute("empDepartment", employee.getDepartmentId());
+
                 req.setAttribute("action", "Update");
             } else {
                 session.removeAttribute("employee");
@@ -41,6 +49,9 @@ public class AddUpdateEmployee extends HttpServlet {
             requestDispatcher.forward(req, resp);
         }else{
             resp.sendRedirect("admin");
+        }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
         }
     }
 
