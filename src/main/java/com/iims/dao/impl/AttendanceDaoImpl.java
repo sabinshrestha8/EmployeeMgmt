@@ -47,19 +47,23 @@ public class AttendanceDaoImpl implements AttendanceDao {
     }
 
     @Override
-    public List<Attendance> findAll() throws SQLException, ClassNotFoundException {
+    public List<Attendance> findAllByDate(String date) throws SQLException, ClassNotFoundException {
         final List<Attendance> attendances = new ArrayList<>();
-        final String QUERY = "SELECT * FROM attendance";
+        final String QUERY = "SELECT * FROM attendance WHERE date LIKE ?";
 
         connection = ConnectionFactory.getConnection();
-        resultSet = connection.prepareStatement(QUERY).executeQuery();
+        preparedStatement = connection.prepareStatement(QUERY);
+
+        preparedStatement.setString(1, date + "%");
+
+        resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
             Attendance attendance = new Attendance();
 
             attendance.setEmpId(Integer.parseInt(resultSet.getString("empId")));
             attendance.setEmpName(resultSet.getString("empName"));
-            attendance.setDate(resultSet.getString("date"));
+            attendance.setDate(resultSet.getString("date").split("\\s")[0]);
             attendance.setIsPresent(resultSet.getBoolean("isPresent"));
 
             attendances.add(attendance);
@@ -73,7 +77,6 @@ public class AttendanceDaoImpl implements AttendanceDao {
         final List<Attendance> attendances = new ArrayList<>();
         final String QUERY = "SELECT * FROM attendance WHERE empId = ?";
 
-        connection = ConnectionFactory.getConnection();
         connection = ConnectionFactory.getConnection();
         preparedStatement = connection.prepareStatement(QUERY);
 
