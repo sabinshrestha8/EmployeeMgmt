@@ -1,5 +1,11 @@
 <%@ include file="/templates/header.jsp"%>
 
+<%
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); //HTTP 1.1
+    response.setHeader("Pragma", "no-cache");   //HTTP 1.0
+    response.setHeader("Expires", "0"); //Proxies
+%>
+
 <h2 class="text-center mt-4">Add Employee</h2>
 <div class="container w-50 mr-0">
     <form action ="employee-form" method="post">
