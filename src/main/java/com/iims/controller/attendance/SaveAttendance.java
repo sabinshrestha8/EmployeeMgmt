@@ -54,11 +54,12 @@ public class SaveAttendance extends HttpServlet {
     }
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String id = req.getParameter("id");
         String isPresent = req.getParameter("isPresent");
         EmployeeDao employeeDao = new EmployeeDaoImp();
         AttendanceDao attendanceDao = new AttendanceDaoImpl();
+        resp.setContentType("text/html");
         try {
             Employee employee = employeeDao.findOne(Integer.parseInt(id));
             if (isPresent != null) {
@@ -67,8 +68,10 @@ public class SaveAttendance extends HttpServlet {
                 attendanceDao.saveAbsent(employee);
             }
         } catch (SQLException | ClassNotFoundException e) {
+            resp.getWriter().write("{ \"result\": \"failed\" }");
             e.printStackTrace();
         }
+        resp.getWriter().write("{ \"result\": \"success\" }");
     }
 
 }
