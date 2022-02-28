@@ -37,7 +37,7 @@ public class EmployeeDaoImp implements EmployeeDao {
 
     @Override
     public List<Employee> findAll() throws ClassNotFoundException, SQLException {
-        final List<Employee> books = new ArrayList<>();
+        final List<Employee> employees = new ArrayList<>();
         final String QUERY = "SELECT * FROM employee";
 
         connection = ConnectionFactory.getConnection();
@@ -54,10 +54,10 @@ public class EmployeeDaoImp implements EmployeeDao {
             employee.setJoinDate(resultSet.getString("joinDate").split("\\s")[0]);
             employee.setDepartmentId(resultSet.getInt("departmentId"));
 
-            books.add(employee);
+            employees.add(employee);
         }
 
-        return books;
+        return employees;
     }
 
     @Override
