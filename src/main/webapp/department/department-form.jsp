@@ -3,7 +3,7 @@
 <%--<h2 class="text-center my-4">Add Department</h2>--%>
 
 <div class="container p-4 w-50 shadow rounded">
-    <legend class="display-5 pb-3 fw-bolder text-primary">Add Employee</legend>
+    <legend class="display-5 pb-3 fw-bolder text-primary">Add Department</legend>
     <form action="department-form" method="post">
         <div class="row flex-row p-2">
             <div class="col-md align-self-center mb-3">

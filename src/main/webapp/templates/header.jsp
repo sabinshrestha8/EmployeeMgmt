@@ -39,7 +39,7 @@
 </head>
 <body class="bg-light">
 
-<div class="container w-75 p-0">
+<div class="container w-100 p-0">
     <c:if test="${user != null}">
         <div class="d-flex flex-row-reverse p-4">
             <a href="logout" class="btn btn-info btn-sm text-white">Logout</a>
