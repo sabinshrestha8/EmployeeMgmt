@@ -8,6 +8,7 @@ public class Employee {
     private int age;
     private String joinDate;
     private int departmentId;
+    private String departmentName;
 
     public int getId() {
         return id;
@@ -65,6 +66,14 @@ public class Employee {
         this.departmentId = departmentId;
     }
 
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -78,7 +87,8 @@ public class Employee {
                 '}';
     }
 
-    public Employee() {}
+    public Employee() {
+    }
 
     public Employee(int id, String name, long contact, String address, int age, String joinDate, int departmentId) {
         this.id = id;

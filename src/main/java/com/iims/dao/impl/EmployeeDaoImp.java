@@ -38,7 +38,9 @@ public class EmployeeDaoImp implements EmployeeDao {
     @Override
     public List<Employee> findAll() throws ClassNotFoundException, SQLException {
         final List<Employee> books = new ArrayList<>();
-        final String QUERY = "SELECT * FROM employee";
+        final String QUERY = "SELECT employee.id, employee.name, employee.contact, employee.address, " +
+                "employee.age, employee.joinDate, department.name AS departmentName FROM employee " +
+                "INNER JOIN department ON employee.departmentId=department.id ORDER BY employee.id";
 
         connection = ConnectionFactory.getConnection();
         resultSet = connection.prepareStatement(QUERY).executeQuery();
@@ -52,8 +54,7 @@ public class EmployeeDaoImp implements EmployeeDao {
             employee.setAddress(resultSet.getString("address").split(",")[0]);
             employee.setAge(resultSet.getInt("age"));
             employee.setJoinDate(resultSet.getString("joinDate").split("\\s")[0]);
-            employee.setDepartmentId(resultSet.getInt("departmentId"));
-
+            employee.setDepartmentName(resultSet.getString("departmentName"));
             books.add(employee);
         }
 

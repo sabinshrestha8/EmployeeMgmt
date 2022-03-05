@@ -3,8 +3,8 @@
 <h2 class="text-center mt-4 mx-auto">View Employees</h2>
 <div class="container w-75 my-4">
     <div class="btn-wrap d-flex flex-row-reverse">
-        <a href="department-view" class="btn btn-secondary btn-sm mx-2">View Department</a>
-        <a href="employee-form" class="btn btn-primary btn-sm">Add Employee</a>
+        <a href="department-view" class="btn btn-outline-secondary btn-sm mx-2 my-2">View Department</a>
+        <a href="employee-form" class="btn btn-primary btn-sm my-2">Add Employee</a>
     </div>
     <table class="table">
         <thead>
@@ -15,7 +15,7 @@
             <th class="text-center">Address</th>
             <th class="text-center">Age</th>
             <th class="text-center">Join Date</th>
-            <th class="text-center">Dept Id</th>
+            <th class="text-center">Dept Name</th>
             <th class="text-center">Action</th>
             <th class="text-center">Attendance</th>
         </tr>
@@ -29,9 +29,9 @@
                 <td class="text-center">${employee.address}</td>
                 <td class="text-center">${employee.age}</td>
                 <td class="text-center">${employee.joinDate}</td>
-                <td class="text-center">${employee.departmentId}</td>
+                <td class="text-center">${employee.departmentName}</td>
                 <td align="center">
-                    <a class="btn btn-success btn-sm" style="width: 35px"
+                    <a class="btn btn-primary btn-sm" style="width: 35px"
                        href="employee-form?id=${employee.id}"><i class="fas fa-edit"></i>
                     </a>
                     <a class="btn btn-danger btn-sm" style="width: 35px"

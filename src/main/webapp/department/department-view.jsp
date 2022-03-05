@@ -4,8 +4,8 @@
 <h2 class="text-center mt-4 mx-auto">View Departments</h2>
 <div class="container w-75 my-4">
     <div class="btn-wrap d-flex flex-row-reverse">
-        <a href="employee-view" class="btn btn-secondary btn-sm mx-2">View Employee</a>
-        <a href="department-form" class="btn btn-primary btn-sm">Add Department</a>
+        <a href="employee-view" class="btn btn-outline-secondary btn-sm mx-2 my-2">View Employee</a>
+        <a href="department-form" class="btn btn-primary btn-sm my-2">Add Department</a>
     </div>
     <table class="table">
         <thead>

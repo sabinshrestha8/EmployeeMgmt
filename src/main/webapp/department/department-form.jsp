@@ -1,13 +1,19 @@
 <%@ include file="/templates/header.jsp" %>
 
-<h2 class="text-center my-4">Add Department</h2>
-<div class="container w-50 mr-0">
+<%--<h2 class="text-center my-4">Add Department</h2>--%>
+
+<div class="container p-4 w-50 shadow rounded">
+    <legend class="display-5 pb-3 fw-bolder text-primary">Add Employee</legend>
     <form action="department-form" method="post">
-        <div class="mb-3">
-            <label class="form-label">Name:</label>
-            <input type="text" class="form-control" placeholder="AI" name="name">
+        <div class="row flex-row p-2">
+            <div class="col-md align-self-center mb-3">
+                <label class="form-label">Name:</label>
+                <input type="text" class="form-control" placeholder="AI" name="name">
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary px-2">Save</button>
+        </div>
     </form>
 </div>
 
