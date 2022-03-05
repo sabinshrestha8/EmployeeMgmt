@@ -7,17 +7,17 @@
             <input type="hidden" value="${employee.id}" name="id">
             <div class="col-md-6 mb-3">
                 <label class="form-label">Name:</label>
-                <input type="text" class="form-control" value="${employee.name}" placeholder="John Doe" name="name">
+                <input type="text" class="form-control" value="${employee.name}" placeholder="John Doe" name="name" required>
             </div>
             <div class="col-md-6 mb-3">
                 <label class="form-label">Contact:</label>
                 <input type="text" class="form-control" value="${employee.contact}" placeholder="9801000000"
-                       name="contact">
+                       name="contact" required>
             </div>
             <div class="col-md-12 align-self-center mb-3">
                 <label class="form-label">Address: </label>
                 <input type="text" class="form-control" value="${employee.address}" placeholder="Putalisadak"
-                       name="address">
+                       name="address" required>
             </div>
             <div class="col-md-6 mb-3">
                 <label class="form-label">Department Id:</label>
@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label class="form-label">Age:</label>
-                <input type="text" class="form-control" value="${employee.age}" placeholder="28" name="age">
+                <input type="text" class="form-control" value="${employee.age}" placeholder="28" name="age" required>
             </div>
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">${action}</button>
